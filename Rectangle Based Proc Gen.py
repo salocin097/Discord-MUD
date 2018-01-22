@@ -1,5 +1,33 @@
 import random
 
+# The first class, Tile will be used in basically all of the Proc Gen. It will contain information about the Tile
+# The two current properties are pretty straightforward and will be used for pathfinding, fog of war, and rendering
+
+# The way this works is we call the make_blank_map() method with a width and height and it will return a 2D array
+# of Tiles, initialized as False for both walkable and transparent, implying they are walls
+
+# Next we call populate_map(dungeon_map, map_height, map_width, max_rooms, room_min_size, room_max_size). First
+# parameter will be the 2D array we created above. Next two are again the map_height and map_width. When I'm less
+# lazy I can remove those and just do some type of .length() to find those parameters, but I've been jumping
+# between C#, C++, Java and Python so I don't remember functions. Next we have the maximum number of rooms.
+
+# Note: it's very likely that it will not populate with close to the # of max_rooms input, although that depends
+# on the map size and room size parameters. max_rooms only denotes the number of rooms the populate_map() function
+# will attempt to make. The function will create a random Rect, new_room, based on the size parameters and map
+# parameters. It will then check against the other already existing rooms to see if it would intersect. If it does,
+# it discards the new_room. If it will not overlap it will create the room, changing the Tiles in the 2D array to be
+# both walkable and transparent, a floor tile. It then will create a tunnel from the last room to the current room.
+# Lastly, it adds the Rect to the rooms[] array to ensure there will be no overlapping rooms.
+
+# The function does not track the location of hallways, so the larger the maze, the more likely it is to have redundant
+# tunnels or double wide tunnels.
+
+# Issues: Currently don't have a way to display the maze!! Not sure what library we want to use to draw it?
+# but just use the Tile.walkable/transparent to decide what is a wall, etc. Currently whatever is walkable is also
+# transparent but that can be changed later.
+# An example being lake tiles that are not walkable but transparent or something. Vice versa for a foggy level.
+
+
 
 class Tile:
     def __init__(self, walkable, transparent):
@@ -9,6 +37,8 @@ class Tile:
         if transparent is None:
             transparent = walkable
         self.transparent = transparent
+
+        # Transparent refers to whether or not it blocks LoS (Line of Sight)
 
         # NOTE these are not booleans because in the future we may have flying/swimming mobs
         # and use variables such as swimmable etc
@@ -51,10 +81,11 @@ def create_v_tunnel(dungeon_map, y1, y2, x):
         dungeon_map[x][y].transparent = True
 
 
-def make_blank_map(dungeon_map, map_height, map_width):
+def make_blank_map(map_height, map_width):
     dungeon_map = [[Tile(False)
                     for y in range(map_height)]
                    for x in range(map_width)]
+    return dungeon_map
 
 
 def populate_map(dungeon_map, map_height, map_width, max_rooms, room_min_size, room_max_size):
