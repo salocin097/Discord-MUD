@@ -1,5 +1,5 @@
 class Tile:
-    def __init__(self, walkable, transparent):
+    def __init__(self, walkable, transparent=None):
         self.walkable = walkable
 
         # by default, if a tile is walkable it is also transparent

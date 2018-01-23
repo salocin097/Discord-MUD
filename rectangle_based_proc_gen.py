@@ -109,12 +109,12 @@ def populate_map(dungeon_map, map_height, map_width, max_rooms, room_min_size, r
 
                 if random.randint(0, 1) == 1:
                     # first move horizontally, then vertically
-                    create_h_tunnel(prev_x, new_x, prev_y)
-                    create_v_tunnel(prev_y, new_y, new_x)
+                    create_h_tunnel(dungeon_map, int(prev_x), int(new_x), int(prev_y))
+                    create_v_tunnel(dungeon_map, int(prev_y), int(new_y), int(new_x))
                 else:
                     # first move vertically, then horizontally
-                    create_v_tunnel(prev_y, new_y, prev_x)
-                    create_h_tunnel(prev_x, new_x, new_y)
+                    create_v_tunnel(dungeon_map, int(prev_y), int(new_y), int(prev_x))
+                    create_h_tunnel(dungeon_map, int(prev_x), int(new_x), int(new_y))
 
             rooms.append(new_room)
             num_rooms += 1
