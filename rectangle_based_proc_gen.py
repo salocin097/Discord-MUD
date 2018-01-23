@@ -1,4 +1,8 @@
 import random
+from Tile import Tile
+
+# This is essentially an adaptation of the algorithm found in part 3 of this tutorial
+# http://www.roguebasin.com/index.php?title=Roguelike_Tutorial,_using_python3%2Btdl
 
 # The first class, Tile will be used in basically all of the Proc Gen. It will contain information about the Tile
 # The two current properties are pretty straightforward and will be used for pathfinding, fog of war, and rendering
@@ -28,22 +32,6 @@ import random
 # An example being lake tiles that are not walkable but transparent or something. Vice versa for a foggy level.
 
 
-
-class Tile:
-    def __init__(self, walkable, transparent):
-        self.walkable = walkable
-
-        # by default, if a tile is walkable it is also transparent
-        if transparent is None:
-            transparent = walkable
-        self.transparent = transparent
-
-        # Transparent refers to whether or not it blocks LoS (Line of Sight)
-
-        # NOTE these are not booleans because in the future we may have flying/swimming mobs
-        # and use variables such as swimmable etc
-
-
 class Rect:
     def __init__(self, x, y, w, h):
         self.x1 = x
@@ -54,7 +42,7 @@ class Rect:
     def center(self):
         center_x = (self.x1 + self.x2) / 2
         center_y = (self.y1 + self.y2) / 2
-        return (center_x, center_y)
+        return center_x, center_y
 
     def does_intersect(self, other):
         # returns true if the rectangle intersects with the other rectangle
