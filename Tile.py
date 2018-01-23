@@ -12,7 +12,8 @@ class Tile:
     # These may become enums in the future where we have set_water() make self.walkable = SWIMMABLE or
     # something similar. For now my maze gens will just use this class and the first two methods.
     # In general, walls will be printed as '#' and floors as '.'. Obviously this won't matter later
-    # but it's a placeholder.
+    # but it's a placeholder. The Tile itself does not contain information about how it's drawn. The
+    # Tile will only contain information about how to interact with it.
 
     def set_wall(self):
         self.walkable = False
