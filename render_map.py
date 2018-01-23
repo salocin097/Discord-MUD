@@ -7,7 +7,7 @@ def render_dungeon(dungeon):
             wall = (not dungeon[x][y].walkable and not dungeon[x][y].transparent)
             floor = dungeon[x][y].walkable and dungeon[x][y].transparent
             if wall:
-                print('#')
+                print('#', end='')
             elif floor:
-                print('.')
-    print('\n')
+                print('.', end='')
+        print('\n')

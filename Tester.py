@@ -2,8 +2,8 @@ import rectangle_based_proc_gen
 import render_map
 
 
-MAP_HEIGHT = 25
-MAP_WIDTH = 80
+MAP_HEIGHT = 10
+MAP_WIDTH = 10
 
 
 test_map = rectangle_based_proc_gen.make_blank_map(MAP_HEIGHT, MAP_WIDTH)
