@@ -1,5 +1,5 @@
 import random
-from Tile import Tile
+from tile import Tile
 
 # This is essentially an adaptation of the algorithm found in part 3 of this tutorial
 # http://www.roguebasin.com/index.php?title=Roguelike_Tutorial,_using_python3%2Btdl
