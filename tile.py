@@ -1,3 +1,8 @@
+TILE_WALL = 0
+TILE_FLOOR = 1
+TILE_WATER = 2
+TILE_TALL_GRASS = 3
+
 class Tile:
     def __init__(self, walkable, transparent=None):
         self.walkable = walkable
@@ -15,18 +20,18 @@ class Tile:
     # but it's a placeholder. The Tile itself does not contain information about how it's drawn. The
     # Tile will only contain information about how to interact with it.
 
-    def set_wall(self):
-        self.walkable = False
-        self.transparent = False
-
-    def set_floor(self):
-        self.walkable = True
-        self.transparent = True
-
-    def set_water(self):
-        self.walkable = False
-        self.transparent = True
-
-    def set_tall_grass(self):
-        self.walkable = True
-        self.transparent = False
+    def set_tile_type(self, tile_type):
+        if tile_type == TILE_WALL:
+            self.walkable = False
+            self.transparent = False
+        elif tile_type == TILE_FLOOR:
+            self.walkable = True
+            self.transparent = True
+        elif tile_type == TILE_WATER:
+            self.walkable = False
+            self.transparent = True
+        elif tile_type == TILE_TALL_GRASS:
+            self.walkable = True
+            self.transparent = False
+        else:
+            raise TypeError('Either the input is not yet implemented or the wrong type.')

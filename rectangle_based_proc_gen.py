@@ -1,5 +1,5 @@
 import random
-from tile import Tile
+from tile import Tile, TILE_FLOOR, TILE_WALL
 
 # This is essentially an adaptation of the algorithm found in part 3 of this tutorial
 # http://www.roguebasin.com/index.php?title=Roguelike_Tutorial,_using_python3%2Btdl
@@ -53,8 +53,7 @@ class Rect:
 def create_room(dungeon_map, room):
     for x in range(room.x1 + 1, room.x2):
         for y in range(room.y1 + 1, room.y2):
-            dungeon_map[x][y].walkable = True
-            dungeon_map[x][y].transparent = True
+            dungeon_map[x][y].set_tile_type(TILE_FLOOR)
 
 
 def create_h_tunnel(dungeon_map, x1, x2, y):
