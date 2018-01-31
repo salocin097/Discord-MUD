@@ -1,6 +1,7 @@
 from tile import Tile, TILE_WALL, TILE_FLOOR # not sure how necessary this import is? or which parts
-# from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC, abstractmethod
 
+# In this branch I am going to try to use StageBuilder as an Abstract Class making use of the ABC module
 
 # This is taken from a dart implementation of a procedurally generated dungeon. It is
 # in the game "hauberk" https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/COPYRIGHT
@@ -18,12 +19,29 @@ from tile import Tile, TILE_WALL, TILE_FLOOR # not sure how necessary this impor
 # tile_type. Or straight lines.
 
 
-class StageBuilder:
+class StageBuilder(ABC):
 
-    def __init__(self):
-        self.stage = None
-        self.width = None
-        self.height = None
+    @property
+    @abstractmethod
+    def stage(self):
+        return
+
+    # possibly make stage object contain height + width? Debating on making stage only a 2D array
+    # or containing additional information
+    @property
+    @abstractmethod
+    def width(self):
+        return
+
+    @property
+    @abstractmethod
+    def height(self):
+        return
+
+    @abstractmethod
+    def generate_map(self):
+        raise NotImplementedError('This method has not been overridden yet.')
+        # this error may no longer be needed
 
     # this allows the stageBuilder to modify the stage
     def bind_stage(self, stage):
@@ -32,9 +50,6 @@ class StageBuilder:
         self.width = len(stage)
         if self.width != 0 or None:
             self.height = len(stage[0])
-
-    def generate_map(self):
-        raise NotImplementedError('This method has not been overridden yet.')
 
     # to fill full map simply do fill_area(stage.width, stage.height, TILE_WALL)
     def fill_area(self, x, y, tile_type):
