@@ -3,6 +3,7 @@ TILE_FLOOR = 1
 TILE_WATER = 2
 TILE_TALL_GRASS = 3
 
+
 class Tile:
     def __init__(self, walkable, transparent=None):
         self.walkable = walkable

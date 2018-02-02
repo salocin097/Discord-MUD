@@ -26,6 +26,11 @@ class StageBuilder(ABC):
     def stage(self):
         return
 
+    @stage.setter
+    @abstractmethod
+    def stage(self, stage):
+        self.stage = stage
+
     # possibly make stage object contain height + width? Debating on making stage only a 2D array
     # or containing additional information
     @property
@@ -33,10 +38,20 @@ class StageBuilder(ABC):
     def width(self):
         return
 
+    @width.setter
+    @abstractmethod
+    def width(self, width):
+        self.width = width
+
     @property
     @abstractmethod
     def height(self):
         return
+
+    @height.setter
+    @abstractmethod
+    def height(self, height):
+        self.height = height
 
     @abstractmethod
     def generate_map(self):
