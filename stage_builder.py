@@ -31,27 +31,7 @@ class StageBuilder(ABC):
     def stage(self, stage):
         self.stage = stage
 
-    # possibly make stage object contain height + width? Debating on making stage only a 2D array
-    # or containing additional information
-    @property
-    @abstractmethod
-    def width(self):
-        return
-
-    @width.setter
-    @abstractmethod
-    def width(self, width):
-        self.width = width
-
-    @property
-    @abstractmethod
-    def height(self):
-        return
-
-    @height.setter
-    @abstractmethod
-    def height(self, height):
-        self.height = height
+    # Deciding on having all the data and meta data be inside the stage object.
 
     @abstractmethod
     def generate_map(self):
@@ -61,10 +41,6 @@ class StageBuilder(ABC):
     # this allows the stageBuilder to modify the stage
     def bind_stage(self, stage):
         self.stage = stage
-        # storing the width and height for later use
-        self.width = len(stage)
-        if self.width != 0 or None:
-            self.height = len(stage[0])
 
     # to fill full map simply do fill_area(stage.width, stage.height, TILE_WALL)
     def fill_area(self, x, y, tile_type):

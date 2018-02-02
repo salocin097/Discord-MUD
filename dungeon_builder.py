@@ -9,15 +9,12 @@ class DungeonBuilder(StageBuilder):
         self.room_size_variance = 0
         self.extra_connector_chance = 0
 
+    # this particular map layout
     def bind_stage(self, stage):
         if stage.width % 2 == 0 or stage.height % 2 == 0:
             raise ValueError("Input a stage with odd (%2 == 1) dimensions.")
         else:
             self.stage = stage
-            # storing the width and height for later use
-            self.width = len(stage.layout)
-            if self.width != 0 or None:
-                self.height = len(stage.layout[0])
 
     def update_parameters(self, num_room_attempts=None, room_size_variance=None, extra_connector_chance=None):
         if num_room_attempts is not None:
@@ -29,7 +26,9 @@ class DungeonBuilder(StageBuilder):
 
     def generate_map(self):
 
-        # blank out the stage
-        self.stage.layout.fill_area(self.width, self.height, TILE_WALL)
+        # fill the stage with walls
+        self.stage.layout.fill_area(self.stage.width, self.stage.height, TILE_WALL)
+
+
 
         raise NotImplementedError("Not done yet")

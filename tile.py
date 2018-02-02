@@ -21,6 +21,9 @@ class Tile:
     # but it's a placeholder. The Tile itself does not contain information about how it's drawn. The
     # Tile will only contain information about how to interact with it.
 
+    # TODO alternative way would be making a set of "master" tiles
+    # and the stage consists of references to the original tiles
+
     def set_tile_type(self, tile_type):
         if tile_type == TILE_WALL:
             self.walkable = False
