@@ -29,7 +29,7 @@ class DungeonBuilder(StageBuilder):
     def generate_map(self):
 
         # fill the stage with walls
-        self.stage.layout.fill_area(self.stage.width, self.stage.height, TILE_WALL)
+        self.stage.layout.fill_area(0, 0, self.stage.width, self.stage.height, TILE_WALL)
 
         self.generate_rectangles()
 

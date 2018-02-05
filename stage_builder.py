@@ -42,9 +42,8 @@ class StageBuilder(ABC):
     def bind_stage(self, stage):
         self.stage = stage
 
-    # TODO YOU'RE A DUMBASS, THIS NEEDS 2 X-Y COORDINATES OR AT LEAST WIDTH AND HEIGHT, ADD MORE PARAMETERS WHEN YOU WAKE UP
     # to fill full map simply do fill_area(stage.width, stage.height, TILE_WALL)
-    def fill_area(self, x, y, tile_type):
-        for x in range(x):
-            for y in range(y):
+    def fill_area(self, x, y, w, h, tile_type):
+        for x in range(x, x + w):
+            for y in range(y, y + h):
                 self.stage[x][y].set_tile_type(tile_type)
